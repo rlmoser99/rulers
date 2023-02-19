@@ -3,8 +3,8 @@ module Rulers
     def get_controller_and_action(env)
       # my solution to hard code if PATH_INFO is just “/”, return the “/quotes/a_quote” 
       if env["PATH_INFO"] = '/'
-        cont = 'QuotesController'
-        action = 'a_quote'
+        cont = 'HomeController'
+        action = 'index'
       else
         # We split the URL on “/”. The “4” just means “split no more than 4 times”
         # So the split assigns an empty string to “_” from before the first slash, 

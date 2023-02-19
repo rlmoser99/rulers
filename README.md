@@ -32,7 +32,16 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 * [Walkthrough author Rulers Repo](https://github.com/josh-works/rulers)
 * [Noah Gibb's Rulers Repo](https://github.com/noahgibbs/rulers)
 * [Noah Gibb's Best Quotes Repo](https://github.com/noahgibbs/best_quotes)
+* [Rack spec](https://github.com/rack/rack/blob/main/SPEC.rdoc)
+* [Rail's use of Rack](http://guides.rubyonrails.org/rails_on_rack.html)
 
+### Debugging
+
+Must require pry when needing to debug
+```
+require 'pry'
+binding.pry
+```
 
 ### Chapter 1 Error: gem build rulers
 
