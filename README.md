@@ -26,6 +26,14 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Rebuilding Rails Troubleshooting
 
+### Reources
+
+* [Walkthrough of this tutorial](https://www.intermediateruby.com/rebuilding-rails-course-walkthrough)
+* [Walkthrough author Rulers Repo](https://github.com/josh-works/rulers)
+* [Noah Gibb's Rulers Repo](https://github.com/noahgibbs/rulers)
+* [Noah Gibb's Best Quotes Repo](https://github.com/noahgibbs/best_quotes)
+
+
 ### Chapter 1 Error: gem build rulers
 
 ```
