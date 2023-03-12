@@ -62,3 +62,69 @@ Unable to activate actionpack-7.0.4.2, because rack-3.0.4.1 conflicts with rack 
 ```
 
 Solution: You may need to uninstall a conflicting version of rack: `gem uninstall rack`. However, running this command prepended with `bundle exec` should fix this issue.
+
+### Chapter 3 Deprecation Warning & Error: bundler: failed to load command: rackup
+
+```
+➜  best_quotes git:(chapter3) bundle exec rackup -p 3001
+Calling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated. Please call `DidYouMean.correct_error(error_name, spell_checker)' instead.
+bundler: failed to load command: rackup (/Users/rachelmoser/.rbenv/versions/3.1.2/bin/rackup)
+Gem::Exception: can't find executable rackup for gem rack
+  /Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/bundler-2.1.4/lib/bundler/rubygems_integration.rb:374:in `block in replace_bin_path'
+  /Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/bundler-2.1.4/lib/bundler/rubygems_integration.rb:402:in `block in replace_bin_path'
+  /Users/rachelmoser/.rbenv/versions/3.1.2/bin/rackup:25:in `<top (required)>'
+```
+If you can’t find the rackup command, make sure you updated your PATH environment variable to include the gems directory, back when you were installing Ruby and various gems! A ruby manager like rvm or rbenv can do this for you. 
+
+https://github.com/rubygems/rubygems/issues/5234
+
+bundle update --bundler
+
+now the deprecation warning is gone, and the error is different
+
+➜  rulers git:(chapter3) ✗ bundle exec rackup -p 3001
+bundler: failed to load command: rackup (/Users/rachelmoser/.rbenv/versions/3.1.2/bin/rackup)
+/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/bundler-2.4.8/lib/bundler/rubygems_integration.rb:308:in `block in replace_bin_path': can't find executable rackup for gem rack (Gem::Exception)
+	from /Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/bundler-2.4.8/lib/bundler/rubygems_integration.rb:336:in `block in replace_bin_path'
+	from /Users/rachelmoser/.rbenv/versions/3.1.2/bin/rackup:25:in `<top (required)>'
+
+https://guides.rubygems.org/rubygems-basics/
+
+irb(main):001:0> $LOAD_PATH
+=>
+["/opt/homebrew/Cellar/rbenv/1.2.0/rbenv.d/exec/gem-rehash",
+ "/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/site_ruby/3.1.0",
+ "/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/site_ruby/3.1.0/arm64-darwin22",
+ "/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/site_ruby",
+ "/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/vendor_ruby/3.1.0",
+ "/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/vendor_ruby/3.1.0/arm64-darwin22",
+ "/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/vendor_ruby",
+ "/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/3.1.0",
+ "/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/3.1.0/arm64-darwin22"]
+
+ ➜  rulers git:(chapter3) ✗ which rake
+/Users/rachelmoser/.rbenv/shims/rake
+
+* CAN NOT OMIT BUNDLE EXEC, BECAUSE LIKE THE BOOK WARNED, IT CAN NOT FIND THE RULERS GEM
+➜  best_quotes git:(chapter3) rackup -p 3001
+<internal:/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/3.1.0/rubygems/core_ext/kernel_require.rb>:85:in `require': cannot load such file -- rulers (LoadError)
+	from <internal:/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/3.1.0/rubygems/core_ext/kernel_require.rb>:85:in `require'
+
+https://www.mslinn.com/blog/2023/01/31/rackup.html
+
+gem install rackup
+
+➜  best_quotes git:(chapter3) ✗ bundle exec rackup -p 3001
+bundler: failed to load command: rackup (/Users/rachelmoser/.rbenv/versions/3.1.2/bin/rackup)
+/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/bundler-2.4.8/lib/bundler/rubygems_integration.rb:308:in `block in replace_bin_path': can't find executable rackup for gem rackup. rackup is not currently included in the bundle, perhaps you meant to add it to your Gemfile? (Gem::Exception)
+
+* added rackup to Gemfile in best_quotes & it worked!
+
+But when running server, I get the follow message:
+Rack::Lint::LintError at /
+uppercase character in header name: Content-Type
+Ruby	/Users/rachelmoser/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/rack-3.0.4.2/lib/rack/lint.rb: in block in check_headers, line 653
+Web	GET localhost/
+
+
+

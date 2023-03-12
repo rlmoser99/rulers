@@ -6,6 +6,10 @@ module Rulers
         cont = 'HomeController'
         action = 'index'
       else
+
+        # require 'pry'
+        # binding.pry
+
         # We split the URL on “/”. The “4” just means “split no more than 4 times”
         # So the split assigns an empty string to “_” from before the first slash, 
         # then the controller, then the action, and then everything else un-split in one lump
